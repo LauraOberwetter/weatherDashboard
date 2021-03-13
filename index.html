@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Weather Dashboard</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+        
+</head>
+
+
+<body>
+    <header id="container-fluid">
+        <div class="jumbotron text-center">
+            <h1>Weather Dashboard</h1>
+        </div>
+    </header>
+
+
+    <div class="container-fluid w-25 float-left m-0">
+        <div class="row">
+            <div class="col-12 bg-light">
+                <div class="form-group">
+                    <label>Search for City:</label>
+                    <input type="text" id="searchValue" placeholder="Enter city" size="25">
+                    <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 bg-light"> 
+            </div>
+        </div>
+    </div>
+    <div class="container w-75 float-left m-0">
+        <div class="row">
+            <div class="col-12">
+                <h3 id="cityResult" class="resultHead">CITY RESULT HERE</h3>
+                    <h6 id="tempResult" class="result">Tempreature:</h6>
+                    <h6 id="windResult" class="result">Wind Speed:</h6>
+                    <h6 id="humidityResult" class="result">Humidity:</h6>
+                    <h6 id="uvResult" class="result">UV Index:</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3 class="resultHead">5-day Forecast</h3>
+            </div>
+        </div>
+        <div class="row d-flex flex-row justify-content-around">
+            <div class="col-2 forecastTile">
+                <h6>MM/DD/YYYY</h6>
+                <i></i>
+                <h6>Temp:</h6>
+                <h6>Humidity:</h6>
+            </div>
+            <div class="col-2 forecastTile">
+                <h6>MM/DD/YYYY</h6>
+                <i></i>
+                <h6>Temp:</h6>
+                <h6>Humidity:</h6>
+            </div>
+            <div class="col-2 forecastTile">
+                <h6>MM/DD/YYYY</h6>
+                <i></i>
+                <h6>Temp:</h6>
+                <h6>Humidity:</h6>
+            </div>
+            <div class="col-2 forecastTile">
+                <h6>MM/DD/YYYY</h6>
+                <i></i>
+                <h6>Temp:</h6>
+                <h6>Humidity:</h6>
+            </div>
+            <div class="col-2 forecastTile">
+                <h6>MM/DD/YYYY</h6>
+                <i></i>
+                <h6>Temp:</h6>
+                <h6>Humidity:</h6>
+            </div>
+        
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src='script.js'></script>
+</body>
+
+</html>
