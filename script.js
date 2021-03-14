@@ -1,4 +1,6 @@
 var API_KEY = "166a433c57516f51dfab1f7edaed8413";
+var today = moment().format('MM/DD/YY');
+console.log("today is " + today);
 
 
 $(document).ready(function () { //prevents js from loading until the document is ready
@@ -8,6 +10,8 @@ $(document).ready(function () { //prevents js from loading until the document is
         forecast(city);
 
     });
+
+// TODAY'S WEATHER
     function searchCityWeather(city) {
         $.ajax({
             type: "GET",
@@ -25,6 +29,7 @@ $(document).ready(function () { //prevents js from loading until the document is
 
         })
     }
+// 5DAY FORECAST
     function forecast(city) {
         $.ajax({
             type: "GET",
@@ -35,12 +40,17 @@ $(document).ready(function () { //prevents js from loading until the document is
                 for (var i = 0; i < 5; i++) {
                     $("#temp" + i).text("TEMP: " + data["list"][i]["temp"]["day"] + "°F");
                     $("#hum" + i).text("HUMIDITY: " + data["list"][i]["humidity"] + "%");
-                    $("#icon" + i).val(data["list"][i]["weather"][0]["icon"]);
+                    $("#icon" + i).val("http://openweathermap.org/img/wn/" + data["list"][i]["weather"][0]["icon"] + "@2x.png");
 
                 }
 
             }
         })
+    }
+
+// INCREASE DAYS BY 1
+    for (var i=0; i<5; i++) {
+        $("#day" + i).text(moment().add(i, 'd').format('MM/DD/YY'));
     }
 
 
