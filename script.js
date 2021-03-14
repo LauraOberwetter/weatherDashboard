@@ -40,7 +40,9 @@ $(document).ready(function () { //prevents js from loading until the document is
                 for (var i = 0; i < 5; i++) {
                     $("#temp" + i).text("TEMP: " + data["list"][i]["temp"]["day"] + "°F");
                     $("#hum" + i).text("HUMIDITY: " + data["list"][i]["humidity"] + "%");
-                    $("#icon" + i).val("http://openweathermap.org/img/wn/" + data["list"][i]["weather"][0]["icon"] + "@2x.png");
+                    var iconURL = "http://openweathermap.org/img/wn/" + data["list"][i]["weather"][0]["icon"] + "@2x.png";
+                    console.log(iconURL);
+                    $("#icon" + i).attr('src', iconURL);
 
                 }
 
