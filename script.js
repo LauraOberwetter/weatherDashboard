@@ -2,12 +2,14 @@ var API_KEY = "166a433c57516f51dfab1f7edaed8413";
 var today = moment().format('MM/DD/YY');
 console.log("today is " + today);
 
-
+// ON CLICK, RUN SEARCH AND FORECAST FUNCITONS
 $(document).ready(function () { //prevents js from loading until the document is ready
     $('.btn').on("click", function () {
         let city = $("#searchValue").val();
         searchCityWeather(city);
         forecast(city);
+        save();
+        dispSearch();
 
     });
 
@@ -49,6 +51,23 @@ $(document).ready(function () { //prevents js from loading until the document is
             }
         })
     }
+// SAVE SEARCH TERM
+    function save() {
+        for (var i=0; i<5; i++) {
+            let city = $("#searchValue").val();
+            localStorage.setItem("search" + i, city);
+            console.log(city);
+        }
+    }
+// RETRIEVE FROM LOCAL STORAGE
+function dispSearch() { 
+    for (var i=0; i<5; i++){
+            let storedContent = localStorage.getItem("search" + i); // get stored contents from all rows
+            console.log(storedContent); // get stored contents from all rows
+            $("#search" + i).val(storedContent); // place saved text in same row
+
+        }
+};
 
 // INCREASE DAYS BY 1
     for (var i=0; i<5; i++) {
