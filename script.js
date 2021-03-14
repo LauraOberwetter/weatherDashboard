@@ -13,7 +13,7 @@ $(document).ready(function () { //prevents js from loading until the document is
 
     });
 
-// TODAY'S WEATHER
+    // TODAY'S WEATHER
     function searchCityWeather(city) {
         $.ajax({
             type: "GET",
@@ -31,7 +31,7 @@ $(document).ready(function () { //prevents js from loading until the document is
 
         })
     }
-// 5DAY FORECAST
+    // 5DAY FORECAST
     function forecast(city) {
         $.ajax({
             type: "GET",
@@ -51,26 +51,28 @@ $(document).ready(function () { //prevents js from loading until the document is
             }
         })
     }
-// SAVE SEARCH TERM
+    // SAVE SEARCH TERM
     function save() {
-        for (var i=0; i<5; i++) {
-            let city = $("#searchValue").val();
-            localStorage.setItem("search" + i, city);
-            console.log(city);
-        }
+        let city = $("#searchValue").val();
+        const searchHistory = []
+        searchHistory.push(city);
+
+        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+        console.log(searchHistory);
     }
-// RETRIEVE FROM LOCAL STORAGE
-function dispSearch() { 
-    for (var i=0; i<5; i++){
+    
+    // RETRIEVE FROM LOCAL STORAGE
+    function dispSearch() {
+        for (var i = 0; i < 5; i++) {
             let storedContent = localStorage.getItem("search" + i); // get stored contents from all rows
             console.log(storedContent); // get stored contents from all rows
             $("#search" + i).val(storedContent); // place saved text in same row
 
         }
-};
+    };
 
-// INCREASE DAYS BY 1
-    for (var i=0; i<5; i++) {
+    // INCREASE DAYS BY 1
+    for (var i = 0; i < 5; i++) {
         $("#day" + i).text(moment().add(i, 'd').format('MM/DD/YY'));
     }
 
