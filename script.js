@@ -7,12 +7,20 @@ var uv;
 
 // ON CLICK, RUN SEARCH AND FORECAST FUNCITONS
 $(document).ready(function () { //prevents js from loading until the document is ready
+    //SEARCH NEW CITY
     $('.btn').on("click", function () {
         let city = $("#searchValue").val();
         searchCityWeather(city);
         forecast(city);
         save();
         dispSearch()
+    });
+    //SEARCH FROM HISTORY
+    $('h4').on("click", function () {
+        let city = $(this).text(); 
+        console.log(city);
+        searchCityWeather(city);
+        forecast(city);
     });
 
     // TODAY'S WEATHER
