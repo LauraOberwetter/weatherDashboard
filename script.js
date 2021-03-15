@@ -1,6 +1,9 @@
 var API_KEY = "166a433c57516f51dfab1f7edaed8413";
 var today = moment().format('MM/DD/YY');
 console.log("today is " + today);
+var lat;
+var lon;
+var uv;
 
 // ON CLICK, RUN SEARCH AND FORECAST FUNCITONS
 $(document).ready(function () { //prevents js from loading until the document is ready
@@ -10,7 +13,6 @@ $(document).ready(function () { //prevents js from loading until the document is
         forecast(city);
         save();
         dispSearch()
-
     });
 
     // TODAY'S WEATHER
@@ -25,11 +27,10 @@ $(document).ready(function () { //prevents js from loading until the document is
                 $("#tempResult").text("Tempreature: " + data["main"]["temp"] + "°F");
                 $("#windResult").text("Wind Speed: " + data["wind"]["speed"] + "mph");
                 $("#humidityResult").text("Humidity: " + data["main"]["humidity"] + "%");
-                // var lat = (data["coord"]["lat"]);
-                // var lon = (data["coord"]["lon"]);
-                // console.log(data);
+                lat = (data["coord"]["lat"]);
+                lon = (data["coord"]["lon"]);
+                uv(); 
             }
-
         })
     }
     // 5DAY FORECAST
@@ -47,24 +48,32 @@ $(document).ready(function () { //prevents js from loading until the document is
                     //console.log(iconURL);
                     $("#icon" + i).attr('src', iconURL);
                 }
-
             }
         })
     }
-    // UV INDEX
+// UV INDEX
     function uv(city) {
         $.ajax({
             type: "GET",
-            url: `http://http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${API_KEY}`,
+            url: `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${API_KEY}`,
             dataType: "json",
             success: function (data) {
-                $("#uvResult").text("UV Index: " + data["main"]);
-            
+                $("#uvResult").text("UV Index: " + data["value"]);
+                //console.log(data);
+                uv = data["value"];
+                console.log(uv);
+                if (uv >= 7) {
+                    $(uvResult).addClass("high")
+                } else if (2.99 <= uv <= 6.99) {
+                    $(uvResult).addClass("medium")
+                } else if (uv <= 2) {
+                    $(uvResult).addClass("low")
                 }
-
+                }
             }
         )};
 
+// COLOR CODE UV INDEX
 
     
  //SAVE TO LOCAL STORAGE   
@@ -78,7 +87,7 @@ $(document).ready(function () { //prevents js from loading until the document is
         }
      
         searchHistory.push(city);
-     console.log(searchHistory, city)
+        //console.log(searchHistory, city)
         localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
         //console.log(searchHistory);
      

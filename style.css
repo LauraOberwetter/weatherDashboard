@@ -12,3 +12,15 @@
 .forecastTile {
     background-color:lavenderblush;
 }
+
+.high {
+    background-color: red;
+}
+
+.medium {
+    background-color: yellow;
+}
+
+.low {
+    background-color: green;
+}
