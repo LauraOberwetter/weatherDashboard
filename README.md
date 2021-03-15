@@ -6,7 +6,7 @@ This is a simple calendar weather dashboard application that allows users to loo
 
 ## Image
 
-![Screen Shot 2021-03-08 at 11 23 14 AM](https://user-images.githubusercontent.com/23666524/110357280-bcc03300-8000-11eb-9d90-5f5627350e43.png)
+<img width="1275" alt="Screen Shot 2021-03-15 at 7 57 04 AM" src="https://user-images.githubusercontent.com/23666524/111157439-e202f300-8564-11eb-80c4-c055e103e50a.png">
 
 ## Link
 
