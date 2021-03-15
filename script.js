@@ -27,7 +27,7 @@ $(document).ready(function () { //prevents js from loading until the document is
     function searchCityWeather(city) {
         $.ajax({
             type: "GET",
-            url: `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=imperial`,
+            url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=imperial`,
             dataType: "json",
             success: function (data) {
                 //console.log(data);
@@ -45,14 +45,14 @@ $(document).ready(function () { //prevents js from loading until the document is
     function forecast(city) {
         $.ajax({
             type: "GET",
-            url: `http://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&appid=${API_KEY}&units=imperial`,
+            url: `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&appid=${API_KEY}&units=imperial`,
             dataType: "json",
             success: function (data) {
                 //console.log(data);
                 for (var i = 0; i < 5; i++) {
                     $("#temp" + i).text("TEMP: " + data["list"][i]["temp"]["day"] + "°F");
                     $("#hum" + i).text("HUMIDITY: " + data["list"][i]["humidity"] + "%");
-                    var iconURL = "http://openweathermap.org/img/wn/" + data["list"][i]["weather"][0]["icon"] + "@2x.png";
+                    var iconURL = "https://openweathermap.org/img/wn/" + data["list"][i]["weather"][0]["icon"] + "@2x.png";
                     //console.log(iconURL);
                     $("#icon" + i).attr('src', iconURL);
                 }
@@ -63,7 +63,7 @@ $(document).ready(function () { //prevents js from loading until the document is
     function uv(city) {
         $.ajax({
             type: "GET",
-            url: `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${API_KEY}`,
+            url: `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${API_KEY}`,
             dataType: "json",
             success: function (data) {
                 $("#uvResult").text("UV Index: " + data["value"]);
