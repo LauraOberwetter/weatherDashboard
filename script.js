@@ -62,7 +62,7 @@ $(document).ready(function () { //prevents js from loading until the document is
                 //console.log(data);
                 uv = data["value"];
                 console.log(uv);
-                if (uv >= 7) {
+                if (uv >= 7) { // COLOR CODE UV INDEX
                     $(uvResult).addClass("high")
                 } else if (2.99 <= uv <= 6.99) {
                     $(uvResult).addClass("medium")
@@ -72,10 +72,7 @@ $(document).ready(function () { //prevents js from loading until the document is
                 }
             }
         )};
-
-// COLOR CODE UV INDEX
-
-    
+   
  //SAVE TO LOCAL STORAGE   
     function save() {
 
@@ -87,21 +84,21 @@ $(document).ready(function () { //prevents js from loading until the document is
         }
      
         searchHistory.push(city);
-        //console.log(searchHistory, city)
+        console.log(searchHistory, city)
         localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-        //console.log(searchHistory);
+        console.log(searchHistory);
      
        }
      
 
     // RETRIEVE FROM LOCAL STORAGE
     function dispSearch() {
-        for (var i = 0; i < 5; i++) {
-            let storedContent = localStorage.getItem("searchHistory"); 
-            //console.log(storedContent);
-            $("#search" + i).val(storedContent);
-        }
-    };
+        let storedContent = JSON.parse(localStorage.getItem("searchHistory")) || [];
+               for (var i = 0; i < 5; i++) {
+                   //console.log(storedContent);
+                   $("#search" + i).text(storedContent[i]);
+               }
+           };
 
     // INCREASE DAYS BY 1
     for (var i = 0; i < 5; i++) {
