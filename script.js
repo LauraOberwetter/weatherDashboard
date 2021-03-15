@@ -9,6 +9,7 @@ $(document).ready(function () { //prevents js from loading until the document is
         searchCityWeather(city);
         forecast(city);
         save();
+        dispSearch()
 
     });
 
@@ -24,8 +25,9 @@ $(document).ready(function () { //prevents js from loading until the document is
                 $("#tempResult").text("Tempreature: " + data["main"]["temp"] + "°F");
                 $("#windResult").text("Wind Speed: " + data["wind"]["speed"] + "mph");
                 $("#humidityResult").text("Humidity: " + data["main"]["humidity"] + "%");
-                $("#uvResult").text("UV Index: " + data["name"]);
-
+                // var lat = (data["coord"]["lat"]);
+                // var lon = (data["coord"]["lon"]);
+                // console.log(data);
             }
 
         })
@@ -44,12 +46,26 @@ $(document).ready(function () { //prevents js from loading until the document is
                     var iconURL = "http://openweathermap.org/img/wn/" + data["list"][i]["weather"][0]["icon"] + "@2x.png";
                     //console.log(iconURL);
                     $("#icon" + i).attr('src', iconURL);
-
                 }
 
             }
         })
     }
+    // UV INDEX
+    function uv(city) {
+        $.ajax({
+            type: "GET",
+            url: `http://http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${API_KEY}`,
+            dataType: "json",
+            success: function (data) {
+                $("#uvResult").text("UV Index: " + data["main"]);
+            
+                }
+
+            }
+        )};
+
+
     
  //SAVE TO LOCAL STORAGE   
     function save() {
@@ -59,27 +75,24 @@ $(document).ready(function () { //prevents js from loading until the document is
      
         if(!searchHistory){
             searchHistory = []
+        }
      
         searchHistory.push(city);
      console.log(searchHistory, city)
         localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-        console.log(searchHistory);
+        //console.log(searchHistory);
      
        }
      
-     
-     
-     }
 
     // RETRIEVE FROM LOCAL STORAGE
-    /* function dispSearch() {
+    function dispSearch() {
         for (var i = 0; i < 5; i++) {
-            let storedContent = localStorage.getItem("search" + i); 
-            console.log(storedContent); // get stored contents from all rows
-            $("#search" + i).val(storedContent); // place saved text in same row
-
+            let storedContent = localStorage.getItem("searchHistory"); 
+            //console.log(storedContent);
+            $("#search" + i).val(storedContent);
         }
-    }; */
+    };
 
     // INCREASE DAYS BY 1
     for (var i = 0; i < 5; i++) {
